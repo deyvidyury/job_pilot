@@ -1,6 +1,16 @@
 import Link from 'next/link';
 
-export function Navbar() {
+type Props = {
+  activePage?: 'dashboard' | 'find-jobs' | 'profile';
+};
+
+function navLinkClass(active: boolean) {
+  return `text-sm font-medium transition-colors ${
+    active ? 'text-accent' : 'text-text-dark hover:text-accent'
+  }`;
+}
+
+export function Navbar({ activePage }: Props) {
   return (
     <header className="h-16 w-full bg-surface border-b border-border sticky top-0 z-50">
       <div className="max-w-360 mx-auto h-full flex items-center justify-between px-6">
@@ -29,19 +39,19 @@ export function Navbar() {
         <nav className="flex items-center gap-8">
           <Link
             href="/dashboard"
-            className="text-text-dark text-sm font-medium hover:text-accent transition-colors"
+            className={navLinkClass(activePage === 'dashboard')}
           >
             Dashboard
           </Link>
           <Link
             href="/find-jobs"
-            className="text-text-dark text-sm font-medium hover:text-accent transition-colors"
+            className={navLinkClass(activePage === 'find-jobs')}
           >
             Find Jobs
           </Link>
           <Link
             href="/profile"
-            className="text-text-dark text-sm font-medium hover:text-accent transition-colors"
+            className={navLinkClass(activePage === 'profile')}
           >
             Profile
           </Link>

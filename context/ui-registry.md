@@ -27,6 +27,7 @@ After building any component — update this file with the component name, file 
 - Logo icon wrapper: `w-8 h-8 bg-accent rounded-lg flex items-center justify-center`
 - Logo text: `text-text-primary font-semibold text-base`
 - Nav links: `text-text-dark text-sm font-medium hover:text-accent transition-colors`
+- Nav link active: `text-accent text-sm font-medium transition-colors`
 - CTA button: `bg-accent text-accent-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-accent-dark transition-colors`
 
 ---
@@ -133,3 +134,54 @@ After building any component — update this file with the component name, file 
 - Google button: `w-full flex items-center justify-center gap-3 bg-surface border border-border text-text-primary rounded-md px-4 py-2.5 text-sm font-medium hover:bg-surface-secondary transition-colors`
 - GitHub button: `w-full flex items-center justify-center gap-3 bg-overlay-dark text-white rounded-md px-4 py-2.5 text-sm font-medium hover:bg-overlay transition-colors`
 - Button icons: `w-[18px] h-[18px]`
+
+---
+
+### StatsBar
+
+**File:** `components/dashboard/StatsBar.tsx`
+
+- Grid: `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6`
+- Stat card: `bg-surface rounded-xl border border-border p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]`
+- Stat label: `text-text-muted text-xs font-normal leading-4 mb-2`
+- Stat value: `text-[30px] font-semibold leading-9 text-text-primary mb-1`
+- Trend badge up: `bg-success-lightest text-success-darker text-xs font-medium px-2 py-0.5 rounded`
+- Trend badge down: `bg-accent-muted text-text-secondary text-xs font-medium px-2 py-0.5 rounded`
+
+---
+
+### IncompleteProfileBanner
+
+**File:** `components/dashboard/IncompleteProfileBanner.tsx`
+
+- Outer: `bg-accent-muted border border-accent-light rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`
+- Icon box: `w-8 h-8 rounded-lg bg-accent text-accent-foreground flex items-center justify-center shrink-0`
+- Title: `text-text-primary text-sm font-semibold leading-5`
+- Body: `text-text-secondary text-sm leading-5 mt-0.5`
+- CTA button: `bg-accent text-accent-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-accent-dark transition-colors shrink-0`
+
+---
+
+### RecentActivity
+
+**File:** `components/dashboard/RecentActivity.tsx`
+
+- Card: `bg-surface rounded-xl border border-border p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]`
+- Heading: `text-text-primary text-base font-semibold leading-6 mb-5`
+- Empty state: `text-text-muted text-sm`
+- List: `flex flex-col gap-4`
+- Dot success: `bg-success`, info: `bg-info`, warning: `bg-warning` — all `w-2 h-2 rounded-full shrink-0 mt-1.5`
+- Activity text: `text-text-primary text-sm font-medium leading-5`
+- Timestamp: `text-text-muted text-xs leading-4 mt-0.5`
+
+---
+
+### AnalyticsCharts
+
+**File:** `components/dashboard/AnalyticsCharts.tsx`
+
+- Grid: `grid grid-cols-1 lg:grid-cols-3 gap-6`
+- Chart card: `bg-surface rounded-xl border border-border p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]`
+- Chart title: `text-text-primary text-base font-semibold leading-6 mb-1`
+- Chart subtitle: `text-text-muted text-xs leading-4 mb-6`
+- Empty state: centered `text-text-muted text-sm` with SVG icon (`opacity-40`)

@@ -41,7 +41,7 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ### Phase 5 — Dashboard
 
-- [ ] 14 Dashboard Page — Full UI
+- [x] 14 Dashboard Page — Full UI (mock data, placeholder charts)
 - [ ] 15 Stats Bar — Real Data
 - [ ] 16 Recent Activity — Real Data
 - [ ] 17 Analytics Charts — PostHog Data
@@ -62,6 +62,16 @@ Update this file after every completed feature. Any AI agent reading this should
 ---
 
 ## Notes
+
+### Dashboard Placeholder (post-02 Auth fix)
+
+- Created `app/dashboard/page.tsx` — server component, checks auth via `getCurrentUser()`, redirects to `/login` if unauthenticated. Shows welcome message with user email.
+- Created `components/dashboard/IncompleteProfileBanner.tsx` — accent-muted banner with CTA to `/profile`.
+- Created `components/dashboard/StatsBar.tsx` — 4 stat cards (Total Jobs Found, Avg. Match Rate, Companies Researched, Jobs This Week) with mock zero values and trend badges.
+- Created `components/dashboard/RecentActivity.tsx` — welcome message as first activity entry, empty state handled.
+- Created `components/dashboard/AnalyticsCharts.tsx` — 3 chart placeholders (Jobs Found Over Time, Match Score Distribution, Company Research Activity) with empty state SVGs.
+- Stats, activity, and charts will be wired to real data in features 15-17.
+- Fixed `getUser()` → `getCurrentUser()` typo during build.
 
 ### 02 Auth
 

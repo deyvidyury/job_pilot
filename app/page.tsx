@@ -44,7 +44,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar activePage={undefined} />
 
       <main className="flex-1">
         {/* Hero */}
