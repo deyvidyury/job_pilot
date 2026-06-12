@@ -7,8 +7,8 @@ Update this file after every completed feature. Any AI agent reading this should
 ## Current Status
 
 **Phase:** Phase 1 — Foundation
-**Last completed:** 02 Auth
-**Next:** 03 PostHog Initialization
+**Last completed:** 04 Database Schema
+**Next:** 03 PostHog Initialization (skipped) or 05 Profile Page
 
 ---
 
@@ -19,7 +19,7 @@ Update this file after every completed feature. Any AI agent reading this should
 - [x] 01 Homepage
 - [x] 02 Auth
 - [ ] 03 PostHog Initialization
-- [ ] 04 Database Schema
+- [x] 04 Database Schema
 
 ### Phase 2 — Profile Page
 
@@ -49,6 +49,12 @@ Update this file after every completed feature. Any AI agent reading this should
 ---
 
 ## Decisions Made During Build
+
+### 04 Database Schema
+
+- **Trigger on signup** — `handle_new_user()` trigger on `auth.users` auto-creates `profiles` row with `is_complete = false`. Eliminates null-profile edge cases.
+- **Schema as file** — `lib/schema.sql` is version-controlled source of truth.
+- **RLS on all tables** — Defense-in-depth even though server client bypasses RLS.
 
 ### 02 Auth
 
