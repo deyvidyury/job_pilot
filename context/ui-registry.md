@@ -118,3 +118,18 @@ After building any component — update this file with the component name, file 
 - Subtitle: `text-info-muted text-base max-w-lg mx-auto mb-10`
 - Primary CTA: `bg-accent text-accent-foreground px-8 py-3 rounded-md text-sm font-medium hover:bg-accent-dark transition-colors`
 - Ghost CTA: `border border-white/20 text-white px-8 py-3 rounded-md text-sm font-medium hover:bg-white/5 transition-colors`
+
+---
+
+### Login Page
+
+**File:** `app/(auth)/login/page.tsx`
+
+- Page wrapper: `min-h-screen bg-background flex flex-col items-center justify-center px-8`
+- Card: `bg-surface rounded-xl border border-border p-8 w-full max-w-sm shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]`
+- Title: `text-text-primary text-xl font-semibold text-center mb-2`
+- Subtitle: `text-text-secondary text-sm text-center mb-8`
+- Button container: `flex flex-col gap-3`
+- Google button: `w-full flex items-center justify-center gap-3 bg-surface border border-border text-text-primary rounded-md px-4 py-2.5 text-sm font-medium hover:bg-surface-secondary transition-colors`
+- GitHub button: `w-full flex items-center justify-center gap-3 bg-overlay-dark text-white rounded-md px-4 py-2.5 text-sm font-medium hover:bg-overlay transition-colors`
+- Button icons: `w-[18px] h-[18px]`

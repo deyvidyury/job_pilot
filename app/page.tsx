@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/homepage/Hero';
 import { HowItWorks } from '@/components/homepage/HowItWorks';
 import { Features } from '@/components/homepage/Features';
+import { createInsforgeServer } from '@/lib/insforge-server';
 
 const testimonials = [
   {
@@ -30,7 +32,16 @@ const testimonials = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const insforge = await createInsforgeServer();
+  const {
+    data: { user },
+  } = await insforge.auth.getCurrentUser();
+
+  if (user) {
+    redirect('/dashboard');
+  }
+
   return (
     <>
       <Navbar />

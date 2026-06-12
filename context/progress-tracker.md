@@ -7,8 +7,8 @@ Update this file after every completed feature. Any AI agent reading this should
 ## Current Status
 
 **Phase:** Phase 1 — Foundation
-**Last completed:** 01 Homepage
-**Next:** 02 Auth
+**Last completed:** 02 Auth
+**Next:** 03 PostHog Initialization
 
 ---
 
@@ -17,7 +17,7 @@ Update this file after every completed feature. Any AI agent reading this should
 ### Phase 1 — Foundation
 
 - [x] 01 Homepage
-- [ ] 02 Auth
+- [x] 02 Auth
 - [ ] 03 PostHog Initialization
 - [ ] 04 Database Schema
 
@@ -50,10 +50,22 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ## Decisions Made During Build
 
-_Add decisions here as they are made during implementation._
+### 02 Auth
+
+- **Server-side OAuth callback** — Uses API route (`app/api/auth/oauth/exchange/route.ts`) instead of client-side callback page. Eliminates timing gap where proxy.ts redirects before cookies are set.
+- **PKCE verifier via cookie** — Server Action stores PKCE code verifier in short-lived httpOnly cookie, callback API route reads it to exchange OAuth code server-side.
+- **`proxy.ts` (Next.js 16)** — Uses `updateSession()` from `@insforge/sdk/ssr`. Named `proxy.ts` not `middleware.ts` (Next.js 16 convention). Explicit matcher for protected routes only.
+- **Login page as Client Component** — Calls Server Actions for OAuth initiation. Server Actions create server client, get OAuth URL + code verifier, store verifier in cookie, redirect to provider.
+- **Token refresh** — Uses `createRefreshAuthRouter()` from `@insforge/sdk/ssr` at `/api/auth/refresh`.
+- **InsForge SDK** — Uses `@insforge/sdk` (not `@insforge/ssr`). SSR utilities imported from `@insforge/sdk/ssr`.
 
 ---
 
 ## Notes
 
-_Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._
+### 02 Auth
+
+- `@insforge/ssr` package does not exist on npm — SSR utilities are part of `@insforge/sdk/ssr`.
+- `updateSession()` expects `CookieStore` interface which differs from Next.js `RequestCookies`/`ResponseCookies`. Adapter wrappers needed in `proxy.ts`.
+- OAuth auto-detection (`detectAuthCallback`) only works in browser mode (`isServerMode: false`). Server-side exchange requires explicit `exchangeOAuthCode()` call.
+- `createServerClient()` reads `NEXT_PUBLIC_INSFORGE_URL` and `NEXT_PUBLIC_INSFORGE_ANON_KEY` from env automatically.
