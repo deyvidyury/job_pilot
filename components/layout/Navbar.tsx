@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import { signOut } from '@/actions/auth';
 
 type Props = {
   activePage?: 'dashboard' | 'find-jobs' | 'profile';
+  user?: { email?: string } | null;
 };
 
 function navLinkClass(active: boolean) {
@@ -10,7 +12,7 @@ function navLinkClass(active: boolean) {
   }`;
 }
 
-export function Navbar({ activePage }: Props) {
+export function Navbar({ activePage, user }: Props) {
   return (
     <header className="h-16 w-full bg-surface border-b border-border sticky top-0 z-50">
       <div className="max-w-360 mx-auto h-full flex items-center justify-between px-6">
@@ -58,12 +60,23 @@ export function Navbar({ activePage }: Props) {
         </nav>
 
         {/* CTA */}
-        <Link
-          href="/login"
-          className="bg-accent text-accent-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-accent-dark transition-colors"
-        >
-          Start for free
-        </Link>
+        {user ? (
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="bg-surface border border-border text-text-primary rounded-md px-4 py-2 text-sm font-medium hover:bg-surface-secondary transition-colors"
+            >
+              Logout
+            </button>
+          </form>
+        ) : (
+          <Link
+            href="/login"
+            className="bg-accent text-accent-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-accent-dark transition-colors"
+          >
+            Start for free
+          </Link>
+        )}
       </div>
     </header>
   );

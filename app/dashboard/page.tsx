@@ -21,7 +21,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <Navbar activePage="dashboard" />
+      <Navbar activePage="dashboard" user={user} />
 
       <main className="flex-1 py-8 px-8">
         <div className="max-w-360 mx-auto flex flex-col gap-6">

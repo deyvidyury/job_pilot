@@ -51,3 +51,9 @@ export async function signInWithGithub() {
 
   redirect(data.url);
 }
+
+export async function signOut() {
+  const insforge = createServerClient();
+  await insforge.auth.signOut();
+  redirect('/login');
+}

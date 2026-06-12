@@ -6,9 +6,9 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ## Current Status
 
-**Phase:** Phase 1 — Foundation
-**Last completed:** 04 Database Schema
-**Next:** 03 PostHog Initialization (skipped) or 05 Profile Page
+**Phase:** Phase 2 — Profile Page
+**Last completed:** 05 Profile Page — Full UI
+**Next:** 03 PostHog Initialization or 06 Profile Save Logic
 
 ---
 
@@ -23,7 +23,7 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ### Phase 2 — Profile Page
 
-- [ ] 05 Profile Page — Full UI
+- [x] 05 Profile Page — Full UI
 - [ ] 06 Profile Save Logic
 - [ ] 07 AI Profile Extraction from Resume
 - [ ] 08 Resume PDF Generation from Profile
@@ -68,6 +68,23 @@ Update this file after every completed feature. Any AI agent reading this should
 ---
 
 ## Notes
+
+### 05 Profile Page — Full UI
+
+- Created `app/profile/page.tsx` — server component, checks auth via `getCurrentUser()`, renders Navbar/Footer, passes mock data to child components.
+- Created `components/profile/CompletionIndicator.tsx` — profile attention banner with SVG completion ring (percentage), missing field tags with X dismiss buttons, "Complete Profile" CTA.
+- Created `components/profile/ResumeUpload.tsx` — dashed-border upload drop zone with icon, "Select Resume" secondary button, "Generate Resume from Profile" secondary button below.
+- Created `components/profile/ProfileForm.tsx` — client component (`'use client'`) with full form state management:
+  - **Personal Info**: Full Name, Email (disabled), Phone Number, Location, LinkedIn URL, Portfolio/GitHub, Work Authorization dropdown. Two-column grid.
+  - **Professional Info**: Current Job Title, Experience Level dropdown, Years of Experience, Skills tag input with +Add, Industries tag input with +Add.
+  - **Work Experience**: Up to 3 roles, each with Company Name, Job Title, Start Date, End Date, "Currently working here" checkbox, Key Responsibilities textarea. Add/remove role buttons.
+  - **Education**: Highest Degree dropdown, Field of Study, Institution Name, Graduation Year. Two-column grid.
+  - **Job Preferences**: Job Titles Seeking tags with +Add, Remote Preference dropdown, Salary Expectation, Preferred Locations, Cover Letter Tone dropdown.
+  - Save Profile button at bottom right.
+- Created `components/profile/ResumePreview.tsx` — preview card shown when a resume URL exists, with PDF icon, file name, and "View PDF" link.
+- All tags use project tokens: skills `bg-success-lightest text-success-foreground`, industries `bg-info-lightest text-info-foreground`, job titles `bg-accent-muted text-accent`.
+- Form uses empty mock data — no save logic yet (06 Profile Save Logic).
+- Updated `ui-registry.md` with all 4 new components and their exact classes.
 
 ### Dashboard Placeholder (post-02 Auth fix)
 
